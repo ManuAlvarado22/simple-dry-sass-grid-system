@@ -1,0 +1,23 @@
+.row {
+  max-width: $grid-row-width
+  width: 100%;
+  margin: 0 auto;
+
+  &:not(:last-child) {margin-bottom: $grid-margin-vertical;}
+
+  .col {
+    display: inline-block;
+    font-size: 2rem;
+    &:not(:last-child) {margin-right: $grid-margin-horizontal;}
+  }
+
+  @for $col from 2 through 10 {
+    $width: (100% / $col);
+    @for $i from 1 through $col {
+      .col-#{$i}-of-#{$col} {
+        $col-width: ($width * $i);
+        width: calc(#{$col-width} - #{$grid-margin-horizontal});
+      }
+    }
+  }
+}
